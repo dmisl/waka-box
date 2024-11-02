@@ -7,6 +7,4 @@ jobs:
     steps:
       - name: Check environment variables
         run: |
-          echo "GH_TOKEN: $GH_TOKEN"
-          echo "GIST_ID: $GIST_ID"
-          echo "WAKATIME_API_KEY: $WAKATIME_API_KEY"
+          echo ${{ env.GH_TOKEN }}
