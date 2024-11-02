@@ -3,7 +3,7 @@ on: [push]
 jobs:
   test-env-vars:
     runs-on: ubuntu-latest
-    environment: env  # Make sure this matches your environment name
+    environment: envis  # Make sure this matches your environment name
     steps:
       - name: Check environment variables
         run: |
