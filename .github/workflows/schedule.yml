@@ -6,17 +6,17 @@ on:
 jobs:
   update-gist:
     runs-on: ubuntu-latest
-    environment: env
+    environment: env # Specify your environment name here
     steps:
       - uses: actions/checkout@master
       - name: Check environment variables
         run: |
-          echo "GH_TOKEN is set: ${GH_TOKEN:+yes}"
-          echo "GIST_ID is set: ${GIST_ID:+yes}"
-          echo "WAKATIME_API_KEY is set: ${WAKATIME_API_KEY:+yes}"
+          echo "GH_TOKEN is set: ${GH_TOKEN:+yes} (not showing value)"
+          echo "GIST_ID is set: ${GIST_ID:+yes} (not showing value)"
+          echo "WAKATIME_API_KEY is set: ${WAKATIME_API_KEY:+yes} (not showing value)"
       - name: Update gist
         uses: dmisl/waka-box@master
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GIST_ID: ${{ secrets.GIST_ID }}
-          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          GH_TOKEN: ${{ env.GH_TOKEN }} # Accessing the environment variable
+          GIST_ID: ${{ env.GIST_ID }}
+          WAKATIME_API_KEY: ${{ env.WAKATIME_API_KEY }}
