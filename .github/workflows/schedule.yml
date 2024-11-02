@@ -6,6 +6,7 @@ on:
 jobs:
   update-gist:
     runs-on: ubuntu-latest
+    environment: env
     steps:
       - uses: actions/checkout@master
       - name: Check environment variables
