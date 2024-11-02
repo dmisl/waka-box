@@ -1,16 +1,17 @@
-name: Display GH_TOKEN
-on: 
-  workflow_dispatch:  # Manual trigger option
-
+name: Update gist with WakaTime stats
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  # Manual triggers with workflow_dispatch
+  workflow_dispatch:
 jobs:
-  show-token:
+  update-gist:
     runs-on: ubuntu-latest
-    environment: envis  # Specify your environment name here
     steps:
-      - name: Check if GH_TOKEN is set
-        run: |
-          if [ -z "$GH_TOKEN" ]; then
-            echo "GH_TOKEN is not set"
-          else
-            echo "GH_TOKEN is set"
-          fi
+      - uses: actions/checkout@master
+      - name: Update gist
+        uses: matchai/waka-box@master
+        env:
+          GH_TOKEN: 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
+          GIST_ID: 41796d96533b21f1951c7923a4be7e40
+          WAKATIME_API_KEY: waka_44ddf595-497f-48c1-81fe-9968657599a6
