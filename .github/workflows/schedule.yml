@@ -1,10 +1,12 @@
-name: Test Environment Variables
-on: [push]
+name: Display GH_TOKEN
+on: 
+  workflow_dispatch:  # Manual trigger option
+
 jobs:
-  test-env-vars:
+  show-token:
     runs-on: ubuntu-latest
-    environment: envis  # Make sure this matches your environment name
+    environment: envis  # Specify your environment name here
     steps:
-      - name: Check environment variables
+      - name: Display GH_TOKEN
         run: |
-          echo ${{ env.GH_TOKEN }}
+          echo "GH_TOKEN: $GH_TOKEN"
