@@ -7,6 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     environment: envis  # Specify your environment name here
     steps:
-      - name: Display GH_TOKEN
+      - name: Check if GH_TOKEN is set
         run: |
-          echo "GH_TOKEN: $GH_TOKEN"
+          if [ -z "$GH_TOKEN" ]; then
+            echo "GH_TOKEN is not set"
+          else
+            echo "GH_TOKEN is set"
+          fi
