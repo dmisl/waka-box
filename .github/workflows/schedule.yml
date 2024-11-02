@@ -1,22 +1,12 @@
-name: Update gist with WakaTime stats
-on:
-  schedule:
-    - cron: "0 0 * * *" # Run daily at midnight UTC
-  workflow_dispatch: # Manual trigger option
+name: Test Environment Variables
+on: [push]
 jobs:
-  update-gist:
+  test-env-vars:
     runs-on: ubuntu-latest
-    environment: env # Specify your environment name here
+    environment: env  # Make sure this matches your environment name
     steps:
-      - uses: actions/checkout@master
       - name: Check environment variables
         run: |
           echo "GH_TOKEN: $GH_TOKEN"
           echo "GIST_ID: $GIST_ID"
           echo "WAKATIME_API_KEY: $WAKATIME_API_KEY"
-      - name: Update gist
-        uses: dmisl/waka-box@master
-        env:
-          GH_TOKEN: ${{ env.GH_TOKEN }} # Accessing the environment variable
-          GIST_ID: ${{ env.GIST_ID }}
-          WAKATIME_API_KEY: ${{ env.WAKATIME_API_KEY }}
